@@ -1,0 +1,15 @@
+.DS_Store
+App_data
+bin
+obj
+App_Data
+*.user
+*.suo
+*.log
+build/
+TestResults
+GeneratedVersionInfo.cs
+
+#NuGet
+packages/**
+*.nupkg
