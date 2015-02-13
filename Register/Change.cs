@@ -21,11 +21,10 @@ namespace Register
         public int nickel { get; set; }
         public int penny { get; set; }
 
-        public Change calculateChange(Product product, Payment payment)
+        public Change (Money product, Money payment)
         {
-            Change change = new Change();
-            int totalPayment = payment.dollar * 100 + payment.cent;
-            int totalProduct = product.dollar * 100 + product.cent;
+            int totalPayment = payment.amount;
+            int totalProduct = product.amount;
 
             if (totalProduct > totalPayment)
             {
@@ -37,58 +36,72 @@ namespace Register
             }
 
             int totalChangeCents = totalPayment - totalProduct;
-            change.totalChangeCents = totalChangeCents;
+            this.totalChangeCents = totalChangeCents;
 
             int dollarCount = totalChangeCents / 100;
             int centCount = totalChangeCents - dollarCount * 100;
 
             if (dollarCount >= 100)
             {
-                change.hundred = dollarCount / 100;
-                dollarCount -= change.hundred * 100;
+                this.hundred = dollarCount / 100;
+                dollarCount -= this.hundred * 100;
             }
             if (dollarCount >= 20)
             {
-                change.twenty = dollarCount / 20;
-                dollarCount -= change.twenty * 20;
+                this.twenty = dollarCount / 20;
+                dollarCount -= this.twenty * 20;
             }
             if (dollarCount >= 10)
             {
-                change.ten = dollarCount / 10;
-                dollarCount -= change.ten * 10;
+                this.ten = dollarCount / 10;
+                dollarCount -= this.ten * 10;
             }
             if (dollarCount >= 5)
             {
-                change.five = dollarCount / 5;
-                dollarCount -= change.five * 5;
+                this.five = dollarCount / 5;
+                dollarCount -= this.five * 5;
             }
             if (dollarCount >= 1)
             {
-                change.one = dollarCount / 1;
-                dollarCount -= change.one * 1;
+                this.one = dollarCount / 1;
+                dollarCount -= this.one * 1;
             }
-            return change;
+
+            if (centCount >= 25)
+            {
+                this.quarter = centCount / 25;
+                centCount -= this.quarter * 25;
+            }
+            if (centCount >= 10)
+            {
+                this.dime = centCount / 10;
+                centCount -= this.dime * 10;
+            }
+            if (centCount >= 5)
+            {
+                this.nickel = centCount / 5;
+                centCount -= this.nickel * 5;
+            }
+            if (centCount >= 1)
+            {
+                this.penny = centCount / 1;
+                centCount -= this.penny * 1;
+            }
         }
 
-        public void displayChange(Transaction transaction)
+        public Change(int totalChangeCents, int hundred, int twenty, int ten, int five, int one, int quarter, int dime, int nickel, int penny )
         {
-            Console.WriteLine("Total Change:");
-            Console.WriteLine(transaction.change.totalChangeCents);
 
-            Console.WriteLine("Change hundred:");
-            Console.WriteLine(transaction.change.hundred);
-
-            Console.WriteLine("Change twenties:");
-            Console.WriteLine(transaction.change.twenty);
-
-            Console.WriteLine("Change ten:");
-            Console.WriteLine(transaction.change.ten);
-
-            Console.WriteLine("Change five:");
-            Console.WriteLine(transaction.change.five);
-
-            Console.WriteLine("Change ones:");
-            Console.WriteLine(transaction.change.one);
+            this.totalChangeCents = totalChangeCents;
+            this.hundred = hundred;
+            this.twenty = twenty;
+            this.ten = ten;
+            this.five = five;
+            this.one = one;
+            this.quarter = quarter;
+            this.dime = dime;
+            this.nickel = nickel;
+            this.penny = penny;
         }
     }
 }

@@ -9,28 +9,34 @@ namespace Register
 
     public class Transaction
     {
-        public Payment payment { get; set; }
-        public Product product { get; set; }
+        //public Payment payment { get; set; }
+        public Money product { get; set; }
+        public Money payment { get; set; }
         public Change change { get; set; }
 
-        public Transaction processTransaction()
+        public Transaction (Money product, Money payment, Change change)
         {
-            Transaction transaction = new Transaction();
-            Product product = new Product();
-            Payment payment = new Payment();
-            Change change = new Change();
+            this.product = product;
+            this.payment = payment;
+            this.change = change;
+        }
 
-            string sProductDollar = product.getProductDollar();
-            string sProductCent = product.getProductCent();
-
-            string sPaymentDollar = payment.getPaymentDollar();
-            string sPaymentCent = payment.getPaymentCent();
-
-            transaction.payment = payment.buildPayment(sPaymentDollar, sPaymentCent);
-            transaction.product = product.buildProduct(sProductDollar, sProductCent);
-            transaction.change = change.calculateChange(transaction.product, transaction.payment);
-
-            return transaction;
+        public Transaction(int iProduct, int iPayment, int totalChangeCents, int hundred, int twenty, int ten, int five, int one, int quarter, int dime, int nickel, int penny)
+        {
+            Money product = new Money(iProduct);
+            Money payment = new Money(iPayment);
+            this.product = product;
+            this.payment = payment;
+            this.change.totalChangeCents = totalChangeCents;
+            this.change.hundred = hundred;
+            this.change.twenty = twenty;
+            this.change.ten = ten;
+            this.change.five = five;
+            this.change.one = one;
+            this.change.quarter = quarter;
+            this.change.dime = dime;
+            this.change.nickel = nickel;
+            this.change.penny = penny;
         }
     }
 }

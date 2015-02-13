@@ -51,9 +51,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ChangeTest.cs" />
-    <Compile Include="PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionTest.cs" />
+    <Compile Include="MoneyTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Register\Register.csproj">
