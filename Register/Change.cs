@@ -81,6 +81,9 @@ namespace Register
             Console.WriteLine("Change twenties:");
             Console.WriteLine(transaction.change.twenty);
 
+            Console.WriteLine("Change ten:");
+            Console.WriteLine(transaction.change.ten);
+
             Console.WriteLine("Change five:");
             Console.WriteLine(transaction.change.five);
 

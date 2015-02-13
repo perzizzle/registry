@@ -20,12 +20,17 @@ namespace Register
             Payment payment = new Payment();
             Change change = new Change();
 
-            transaction.product = product.getProduct();
-            transaction.payment = payment.getPayment();
+            string sProductDollar = product.getProductDollar();
+            string sProductCent = product.getProductCent();
+
+            string sPaymentDollar = payment.getPaymentDollar();
+            string sPaymentCent = payment.getPaymentCent();
+
+            transaction.payment = payment.buildPayment(sPaymentDollar, sPaymentCent);
+            transaction.product = product.buildProduct(sProductDollar, sProductCent);
             transaction.change = change.calculateChange(transaction.product, transaction.payment);
 
             return transaction;
         }
     }
-
 }

@@ -11,24 +11,33 @@ namespace Register
         public int dollar { get; set; }
         public int cent { get; set; }
 
-        public Product getProduct()
+        public Product buildProduct(string sProductDollar, string sProductCent)
         {
             Product product = new Product();
-            int productDollars = 0;
-            int productCents = 0;
+            int productDollar = 0;
+            int productCent = 0;
 
-            Console.WriteLine("How many dollars is your purchase?");
-            string sProductDollars = Console.ReadLine();
-            Console.WriteLine("How many cents is your purchase?");
-            string sProductCents = Console.ReadLine();
+            if (!int.TryParse(sProductDollar, out productDollar)) throw new ArgumentException("Product dollars must be an integer");
+            if (!int.TryParse(sProductCent, out productCent)) throw new ArgumentException("Product cents must be an integer");
 
-            if (!int.TryParse(sProductDollars, out productDollars)) throw new ArgumentException("Product dollars must be an integer");
-            if (!int.TryParse(sProductCents, out productCents)) throw new ArgumentException("Product cents must be an integer");
-
-            product.dollar = productDollars;
-            product.cent = productCents;
+            product.dollar = productDollar;
+            product.cent = productCent;
 
             return product;
+        }
+
+        public string getProductDollar()
+        {
+            Console.WriteLine("How many dollars is your purchase?");
+            string sProductDollars = Console.ReadLine();
+            return sProductDollars;
+        }
+
+        public string getProductCent()
+        {
+            Console.WriteLine("How many cents is your purchase?");
+            string sProductCents = Console.ReadLine();
+            return sProductCents;
         }
 
     }

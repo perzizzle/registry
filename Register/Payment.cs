@@ -11,25 +11,35 @@ namespace Register
         public int dollar { get; set; }
         public int cent { get; set; }
 
-        public Payment getPayment()
+        public Payment buildPayment(string sPaymentDollar, string sPaymentCent)
         {
             Payment payment = new Payment();
-            int paymentDollars = 0;
-            int paymentCents = 0;
+            int paymentDollar = 0;
+            int paymentCent = 0;
 
-            Console.WriteLine("How many dollars did you pay");
-            string sPaymentDollars = Console.ReadLine();
-            Console.WriteLine("How many cents did you pay?");
-            string sPaymentCents = Console.ReadLine();
+            if (!int.TryParse(sPaymentDollar, out paymentDollar)) throw new ArgumentException("Payment dollars must be an integer");
+            if (!int.TryParse(sPaymentCent, out paymentCent)) throw new ArgumentException("Payment cents must be an integer");
 
-            if (!int.TryParse(sPaymentDollars, out paymentDollars)) throw new ArgumentException("Payment dollars must be an integer");
-            if (!int.TryParse(sPaymentCents, out paymentCents)) throw new ArgumentException("Payment cents must be an integer");
-
-            payment.dollar = paymentDollars;
-            payment.cent = paymentCents;
+            payment.dollar = paymentDollar;
+            payment.cent = paymentCent;
 
             return payment;
         }
+
+        public string getPaymentDollar()
+        {
+            Console.WriteLine("How many dollars did you pay");
+            string sPaymentDollar = Console.ReadLine();
+            return sPaymentDollar;
+        }
+
+        public string getPaymentCent()
+        {
+            Console.WriteLine("How many cents did you pay?");
+            string sPaymentCent = Console.ReadLine();
+            return sPaymentCent;
+        }
+
     }
 
 
