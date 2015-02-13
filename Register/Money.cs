@@ -63,7 +63,7 @@ namespace Register
 
         public Money(int hundred, int twenty, int ten, int five, int one, int quarter, int dime, int nickel, int penny)
         {
-            this.amount = hundred*100 + twenty*100 + ten*100 + five*100 + one*100 + quarter + dime + nickel + penny;
+            this.amount = hundred*100 + twenty*20 + ten*10 + five*5 + one*1 + quarter + dime + nickel + penny;
         }
 
     }
